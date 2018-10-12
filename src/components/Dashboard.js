@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import img from '../assets/img/team-1-800x800.jpg';
-import firebase from '../config/firebase';
+import img from '../assets/img/perfil.png';
+import firebase from '../services/firebase';
+import { NavLink } from 'react-router-dom';
 import 'firebase/firestore';
 
 export default class Dashboard extends Component {
@@ -63,14 +64,19 @@ export default class Dashboard extends Component {
 
 	render() {
 		const projects = this.state.projects.map(project => {
+			const url = 'projects/' + project.id;
 			return (
-				<div key={project.id} className="list-group-item list-group-item-action flex-column align-items-start">
+				<NavLink
+					key={project.id}
+					to={url}
+					className="list-group-item list-group-item-action flex-column align-items-start"
+				>
 					<div className="d-flex w-100 justify-content-between">
 						<h5 className="mb-1">{project.name}</h5>
 						<small className="text-muted">3 days ago</small>
 					</div>
 					<p className="mb-1">{project.description}</p>
-				</div>
+				</NavLink>
 			);
 		});
 
@@ -128,6 +134,23 @@ export default class Dashboard extends Component {
 								</div>
 							</div>
 							<br />
+							<div className="mx-4 my-4">
+								<div className="form-group">
+									<h4>Filtrar</h4>
+									<div className="input-group input-group-alternative mb-4">
+										<div className="input-group-prepend">
+											<span className="input-group-text">
+												<i className="ni ni-zoom-split-in" />
+											</span>
+										</div>
+										<input
+											className="form-control form-control-alternative"
+											placeholder="Escribe el nombre de un proyecto"
+											type="text"
+										/>
+									</div>
+								</div>
+							</div>
 							<div className="list-group mx-2 my-2">{projects}</div>
 						</div>
 					</div>
@@ -160,8 +183,52 @@ export default class Dashboard extends Component {
 												<input
 													className="form-control"
 													placeholder="Nombre del proyecto"
-													type="email"
+													type="text"
 													ref="name"
+												/>
+											</div>
+										</div>
+										<div className="form-group mb-3">
+											<div className="input-group input-group-alternative">
+												<div className="input-group-prepend">
+													<span className="input-group-text">
+														<i className="ni ni-single-02" />
+													</span>
+												</div>
+												<input
+													className="form-control"
+													placeholder="Responsable del proyecto"
+													type="text"
+													ref="responsable"
+												/>
+											</div>
+										</div>
+										<div className="form-group">
+											<div className="input-group input-group-alternative">
+												<div className="input-group-prepend">
+													<span className="input-group-text">
+														<i className="ni ni-calendar-grid-58" />
+													</span>
+												</div>
+												<input
+													className="form-control datepicker"
+													placeholder="Fecha de inicio del proyecto"
+													type="text"
+												/>
+											</div>
+										</div>
+
+										<div className="form-group">
+											<div className="input-group input-group-alternative">
+												<div className="input-group-prepend">
+													<span className="input-group-text">
+														<i className="ni ni-calendar-grid-58" />
+													</span>
+												</div>
+												<input
+													className="form-control datepicker"
+													placeholder="Fecha de entrega del proyecto"
+													type="text"
 												/>
 											</div>
 										</div>
