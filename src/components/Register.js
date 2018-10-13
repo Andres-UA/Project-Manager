@@ -1,6 +1,37 @@
 import React, { Component } from 'react';
+import { auth } from '../firebase';
+import { firebase } from '../firebase/firebase';
 
 export default class Register extends Component {
+    
+    register(event) {
+        const name = this.refs.name.value;
+        const email = this.refs.email.value;
+        const password = this.refs.password.value;
+
+        auth.doCreateUserWithEmailAndPassword(email, password)
+            .then(authUser => {
+                this.updateUser(name);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        event.preventDefault();
+    }
+
+    updateUser(name) {
+        var user = firebase.auth().currentUser;
+        user.updateProfile({
+            displayName: name,
+        })
+            .then(function() {
+                console.log('Actualizado');
+            })
+            .catch(function(error) {
+                // An error happened.
+            });
+    }
+
     render() {
         return (
             <div>
@@ -32,7 +63,7 @@ export default class Register extends Component {
                                                                 <i className="ni ni-hat-3" />
                                                             </span>
                                                         </div>
-                                                        <input className="form-control" placeholder="Nombre" type="text" />
+                                                        <input className="form-control" placeholder="Nombre" type="text" ref="name" />
                                                     </div>
                                                 </div>
                                                 <div className="form-group">
@@ -42,7 +73,7 @@ export default class Register extends Component {
                                                                 <i className="ni ni-email-83" />
                                                             </span>
                                                         </div>
-                                                        <input className="form-control" placeholder="Email" type="email" />
+                                                        <input className="form-control" placeholder="Email" type="email" ref="email" />
                                                     </div>
                                                 </div>
                                                 <div className="form-group">
@@ -52,16 +83,12 @@ export default class Register extends Component {
                                                                 <i className="ni ni-lock-circle-open" />
                                                             </span>
                                                         </div>
-                                                        <input
-                                                            className="form-control"
-                                                            placeholder="Password"
-                                                            type="password"
-                                                        />
+                                                        <input className="form-control" placeholder="Password" type="password" ref="password" />
                                                     </div>
                                                 </div>
 
                                                 <div className="text-center">
-                                                    <button type="button" className="btn btn-primary mt-4">
+                                                    <button type="button" className="btn btn-primary mt-4" onClick={this.register.bind(this)}>
                                                         Crear cuenta
                                                     </button>
                                                 </div>

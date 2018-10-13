@@ -1,7 +1,36 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { auth } from '../firebase';
 
 export default class Login extends Component {
+    constructor() {
+        super();
+        this.state = {
+            redirect: false,
+        };
+    }
+
+    login(event) {
+        const email = this.refs.email.value;
+        const password = this.refs.password.value;
+
+        auth.doSignInWithEmailAndPassword(email, password)
+            .then(authUser => {
+                this.setState({ redirect: true });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        //event.preventDefault();
+    }
+
     render() {
+        const redirect = this.state.redirect;
+
+        if (redirect) {
+            return <Redirect to="/dashboard" />;
+        }
+
         return (
             <div>
                 <section className="section section-shaped section-lg">
@@ -31,7 +60,7 @@ export default class Login extends Component {
                                                             <i className="ni ni-email-83" />
                                                         </span>
                                                     </div>
-                                                    <input className="form-control" placeholder="Email" type="email" />
+                                                    <input className="form-control" placeholder="Email" type="email" ref="email" />
                                                 </div>
                                             </div>
                                             <div className="form-group">
@@ -41,15 +70,11 @@ export default class Login extends Component {
                                                             <i className="ni ni-lock-circle-open" />
                                                         </span>
                                                     </div>
-                                                    <input
-                                                        className="form-control"
-                                                        placeholder="Password"
-                                                        type="password"
-                                                    />
+                                                    <input className="form-control" placeholder="Password" type="password" ref="password" />
                                                 </div>
                                             </div>
                                             <div className="text-center">
-                                                <button type="button" className="btn btn-primary my-4">
+                                                <button onClick={this.login.bind(this)} type="button" className="btn btn-primary my-4">
                                                     Iniciar
                                                 </button>
                                             </div>
