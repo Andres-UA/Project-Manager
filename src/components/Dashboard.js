@@ -15,9 +15,13 @@ export default class Dashboard extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.refreshProjects();
         this.getUser();
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
     }
 
     getUser() {
@@ -28,6 +32,7 @@ export default class Dashboard extends Component {
                 let uid = user.uid;
                 let userData = { name: name, email: email, id: uid };
                 this.setState({ user: userData, isLoggedIn: true });
+                console.log(this.state.isLoggedIn);
             } else {
                 this.setState({ isLoggedIn: false });
             }
@@ -101,7 +106,7 @@ export default class Dashboard extends Component {
         const isLoggedIn = this.state.isLoggedIn;
 
         if (!isLoggedIn) {
-            return <Redirect to="/login" />;
+            //return <Redirect to="/login" />;
         }
 
         const projects = this.state.filteredProjects.map(project => {

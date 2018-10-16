@@ -81,18 +81,6 @@ export default class Login extends Component {
                                         </form>
                                     </div>
                                 </div>
-                                <div className="row mt-3">
-                                    <div className="col-6">
-                                        <a href="." className="text-light">
-                                            <small>Olvidaste tu contraseña?</small>
-                                        </a>
-                                    </div>
-                                    <div className="col-6 text-right">
-                                        <a href="." className="text-light">
-                                            <small>Crear una cuenta</small>
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

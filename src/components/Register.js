@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { auth } from '../firebase';
+import { Redirect } from 'react-router-dom';
 import { firebase } from '../firebase/firebase';
 
 export default class Register extends Component {
     
+    constructor() {
+        super();
+        this.state = {
+            redirect: false,
+        };
+    }
+
     register(event) {
+        window.$('#boton').attr("disabled", true);
         const name = this.refs.name.value;
         const email = this.refs.email.value;
         const password = this.refs.password.value;
@@ -12,6 +21,7 @@ export default class Register extends Component {
         auth.doCreateUserWithEmailAndPassword(email, password)
             .then(authUser => {
                 this.updateUser(name);
+                this.setState({ redirect: true });
             })
             .catch(error => {
                 console.log(error);
@@ -25,7 +35,7 @@ export default class Register extends Component {
             displayName: name,
         })
             .then(function() {
-                console.log('Actualizado');
+                
             })
             .catch(function(error) {
                 // An error happened.
@@ -33,6 +43,13 @@ export default class Register extends Component {
     }
 
     render() {
+
+        const redirect = this.state.redirect;
+
+        if (redirect) {
+            return <Redirect to="/dashboard" />;
+        }
+
         return (
             <div>
                 <div>
@@ -88,18 +105,11 @@ export default class Register extends Component {
                                                 </div>
 
                                                 <div className="text-center">
-                                                    <button type="button" className="btn btn-primary mt-4" onClick={this.register.bind(this)}>
+                                                    <button type="button" id="boton" className="btn btn-primary mt-4" onClick={this.register.bind(this)}>
                                                         Crear cuenta
                                                     </button>
                                                 </div>
                                             </form>
-                                        </div>
-                                    </div>
-                                    <div className="row mt-3">
-                                        <div className="col-12 text-right">
-                                            <a href="." className="text-light">
-                                                <small>Inicia sesión</small>
-                                            </a>
                                         </div>
                                     </div>
                                 </div>

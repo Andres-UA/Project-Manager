@@ -18,7 +18,8 @@ export default class AppHeader extends Component {
         this.setState({ redirect: true });
     }
 
-    componentWillMount() {
+    componentDidMount() {
+
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 this.setState({
@@ -27,6 +28,10 @@ export default class AppHeader extends Component {
             } else {
             }
         });
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
     }
 
     render() {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default class AppFooter extends Component {
     render() {
@@ -11,25 +12,20 @@ export default class AppFooter extends Component {
                             <div className="col-md-6">
                                 <div className="copyright">
                                     &copy; 2018
-                                    <a href="." target="_blank">
-                                        Project Manager
-                                    </a>.
+                                    <NavLink to="/">Project Manager</NavLink>.
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <ul className="nav nav-footer justify-content-end">
                                     <li className="nav-item">
-                                        <a
-                                            href="."
-                                            className="nav-link"
-                                            target="_blank">
+                                        <NavLink to="/" className="nav-link">
                                             Acerca
-                                        </a>
+                                        </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <a href="." className="nav-link" target="_blank">
+                                        <NavLink to="/" className="nav-link">
                                             Blog
-                                        </a>
+                                        </NavLink>
                                     </li>
                                 </ul>
                             </div>
