@@ -12,7 +12,7 @@ export default class AppFooter extends Component {
                             <div className="col-md-6">
                                 <div className="copyright">
                                     &copy; 2018
-                                    <NavLink to="/">Project Manager</NavLink>.
+                                    <NavLink to="/">Project Manager</NavLink> by Andrés U.
                                 </div>
                             </div>
                             <div className="col-md-6">
