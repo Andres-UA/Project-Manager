@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import img from './../assets/img/brand/blue.png';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { firebase } from '../firebase/firebase';
 import { auth } from '../firebase';
+import PropTypes from 'prop-types';
 
 export default class AppHeader extends Component {
     constructor() {
@@ -13,9 +14,16 @@ export default class AppHeader extends Component {
         };
     }
 
+    static contextTypes = {
+		router: PropTypes.object
+	};
+
     logout() {
         auth.doSignOut()
-        this.setState({ redirect: true });
+        this.setState({
+            isLoggedIn: false,
+        });
+        this.context.router.history.push('/home');
     }
 
     componentDidMount() {
@@ -36,12 +44,7 @@ export default class AppHeader extends Component {
 
     render() {
         const isLoggedIn = this.state.isLoggedIn;
-        const redirect = this.state.redirect;
-
-        if (redirect) {
-            return <Redirect to="/login" />;
-        }
-
+        
         return (
             <div>
                 <nav className="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light">

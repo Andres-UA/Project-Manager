@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
+import 'toastr/build/toastr.css';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 import Login from './components/Login';
