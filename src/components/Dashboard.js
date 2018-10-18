@@ -280,7 +280,7 @@ export default class Dashboard extends Component {
 												</div>
 												<input
 													className="form-control datepicker"
-													placeholder="Mes/Dia/Año"
+													placeholder="Fecha Inicio Mes/Dia/Año"
 													type="text"
 													ref="start_date"
 												/>
@@ -296,7 +296,7 @@ export default class Dashboard extends Component {
 												</div>
 												<input
 													className="form-control datepicker"
-													placeholder="Fecha de entrega del proyecto"
+													placeholder="Fecha Fin Mes/Dia/Año"
 													type="text"
 													ref="end_date"
 												/>
