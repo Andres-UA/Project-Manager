@@ -53,7 +53,6 @@ export default class Login extends Component {
 										<div className="text-center text-muted mb-4">
 											<small>Inicia Sesión</small>
 										</div>
-										<form>
 											<div className="form-group mb-3">
 												<div className="input-group input-group-alternative">
 													<div className="input-group-prepend">
@@ -98,7 +97,6 @@ export default class Login extends Component {
 													<i className="fa fa-circle-o-notch fa-spin" /> Cargando
 												</button>
 											</div>
-										</form>
 									</div>
 								</div>
 							</div>

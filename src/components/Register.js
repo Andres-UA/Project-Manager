@@ -36,11 +36,13 @@ export default class Register extends Component {
 		var user = firebase.auth().currentUser;
 		user.updateProfile({
 			displayName: name
-		}).then(() => {
-            this.context.router.history.push('/dashboard');
-        }).catch(error => {
-            console.log('Error: ', error);
-        });
+		})
+			.then(() => {
+				this.context.router.history.push('/dashboard');
+			})
+			.catch(error => {
+				console.log('Error: ', error);
+			});
 	}
 
 	render() {
@@ -66,71 +68,65 @@ export default class Register extends Component {
 											<div className="text-center text-muted mb-4">
 												<small>Crea una nueva cuenta</small>
 											</div>
-											<form>
-												<div className="form-group">
-													<div className="input-group input-group-alternative mb-3">
-														<div className="input-group-prepend">
-															<span className="input-group-text">
-																<i className="ni ni-hat-3" />
-															</span>
-														</div>
-														<input
-															className="form-control"
-															placeholder="Nombre"
-															type="text"
-															ref="name"
-														/>
+											<div className="form-group">
+												<div className="input-group input-group-alternative mb-3">
+													<div className="input-group-prepend">
+														<span className="input-group-text">
+															<i className="ni ni-hat-3" />
+														</span>
 													</div>
+													<input
+														className="form-control"
+														placeholder="Nombre"
+														type="text"
+														ref="name"
+													/>
 												</div>
-												<div className="form-group">
-													<div className="input-group input-group-alternative mb-3">
-														<div className="input-group-prepend">
-															<span className="input-group-text">
-																<i className="ni ni-email-83" />
-															</span>
-														</div>
-														<input
-															className="form-control"
-															placeholder="Email"
-															type="email"
-															ref="email"
-														/>
+											</div>
+											<div className="form-group">
+												<div className="input-group input-group-alternative mb-3">
+													<div className="input-group-prepend">
+														<span className="input-group-text">
+															<i className="ni ni-email-83" />
+														</span>
 													</div>
+													<input
+														className="form-control"
+														placeholder="Email"
+														type="email"
+														ref="email"
+													/>
 												</div>
-												<div className="form-group">
-													<div className="input-group input-group-alternative">
-														<div className="input-group-prepend">
-															<span className="input-group-text">
-																<i className="ni ni-lock-circle-open" />
-															</span>
-														</div>
-														<input
-															className="form-control"
-															placeholder="Password"
-															type="password"
-															ref="password"
-														/>
+											</div>
+											<div className="form-group">
+												<div className="input-group input-group-alternative">
+													<div className="input-group-prepend">
+														<span className="input-group-text">
+															<i className="ni ni-lock-circle-open" />
+														</span>
 													</div>
+													<input
+														className="form-control"
+														placeholder="Password"
+														type="password"
+														ref="password"
+													/>
 												</div>
+											</div>
 
-												<div className="text-center">
-													<button
-														type="button"
-														id="boton_enviar"
-														className="btn btn-primary mt-4"
-														onClick={this.register.bind(this)}
-													>
-														Crear cuenta
-													</button>
-													<button
-														id="boton_carga"
-														hidden={true}
-														className="btn btn-primary my-4"
-													>
-														<i className="fa fa-circle-o-notch fa-spin" /> Cargando
-													</button>
-												</div>
-											</form>
+											<div className="text-center">
+												<button
+													type="button"
+													id="boton_enviar"
+													className="btn btn-primary mt-4"
+													onClick={this.register.bind(this)}
+												>
+													Crear cuenta
+												</button>
+												<button id="boton_carga" hidden={true} className="btn btn-primary my-4">
+													<i className="fa fa-circle-o-notch fa-spin" /> Cargando
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
